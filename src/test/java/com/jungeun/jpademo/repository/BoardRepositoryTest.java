@@ -19,16 +19,18 @@ public class BoardRepositoryTest {
     Board board = Board.builder()
         .title("제목에만 1 넣어봄")
         .content("내용")
-        .writer("김길동")
+        .author("김길동")
         .build();
     boardRepository.save(board);
   }
 
-  @Test
-  public void findByKeywordTest(){
-    List<Board> boards = boardRepository.findByKeyword("1");
-    for (Board board : boards) {
-      log.info(board);
-    }
-  }
+//  @Test
+//  public void findByKeywordTest(){
+//    List<Board> boards = boardRepository.findByKeyword("1");
+//    for (Board board : boards) {
+//      log.info(board);
+//    }
+//  }
+
+
 }

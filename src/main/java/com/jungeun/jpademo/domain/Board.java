@@ -17,17 +17,29 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Board {
+public class Board extends BaseEntity{
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long bno;
-  private String title;
-  private String content;
-  private String writer;
 
-  @CreationTimestamp
-  @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss")
-  private Date regdate;
+  @Column(nullable = false)
+  private String title;
+
+  @Column(nullable = false, length = 3000)
+  private String content;
+
+  @Column(nullable = false)
+  private String author;
+
   @ColumnDefault(value="0")
   private int readcount;
+
+  public void updateReadCount(){
+    readcount = readcount + 1;
+  }
+
+  public void change(String title, String content){
+    this.title = title;
+    this.content = content;
+  }
 }
