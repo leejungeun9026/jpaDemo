@@ -5,12 +5,13 @@ import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
 @SpringBootTest
 @Log4j2
@@ -29,9 +30,9 @@ public class MemberRepositoryTest {
   @Test
   public void insertMemberTest() {
     Member member = Member.builder()
-                    .name("김길동")
+                    .name("최길동")
                     .password("1234")
-                    .email("abc2@naver.com")
+                    .email("aabbcc22@naver.com")
                     .addr("부산진구")
                     .build();
     memberRepository.save(member);

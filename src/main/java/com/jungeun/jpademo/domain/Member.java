@@ -1,17 +1,16 @@
 package com.jungeun.jpademo.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
-@Data
+@Table(name="jpa_member")
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name="jpa_member")
 public class Member {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

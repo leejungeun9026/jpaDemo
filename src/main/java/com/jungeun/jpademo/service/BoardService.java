@@ -2,12 +2,19 @@ package com.jungeun.jpademo.service;
 
 import com.jungeun.jpademo.domain.Board;
 import com.jungeun.jpademo.dto.BoardDTO;
+import com.jungeun.jpademo.dto.PageRequestDTO;
+import com.jungeun.jpademo.dto.PageResponseDTO;
 
 import java.util.List;
 
 public interface BoardService {
-  Long insertBoard(BoardDTO board);
+  Long insertBoard(BoardDTO boardDTO);
   List<BoardDTO> findAllBoard();
+  BoardDTO findById(Long bno, int mode);
+//  void updateReadCount(Long bno);
+  Long updateBoard(BoardDTO boardDTO);
+  int deleteBoard(Long bno);
+  PageResponseDTO<BoardDTO> getList(PageRequestDTO pageRequestDTO);
 
   default Board dtoToEntity(BoardDTO boardDTO){
     Board board = Board.builder()
