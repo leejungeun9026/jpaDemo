@@ -11,11 +11,13 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Table(name="jpa_reply")
-public class Reply extends BaseEntity {
+public class ReplyEntity extends BaseEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long rno;
   private Long bno;
   private String content;
   private String writer;
+  @Transient
+  private String memo;
 }
