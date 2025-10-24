@@ -30,12 +30,14 @@
         </tr>
         </tbody>
       </table>
-      <div class="d-flex justify-content-start gap-2">
-        <a th:href="@{/board/list}">
+      <div th:with="link=${pageRequestDTO.link}" class="d-flex justify-content-start gap-2">
+        <a th:href="|@{/board/list}?${link}|">
           <button class="btn btn-secondary" type="button">목록</button>
         </a>
         <button class="btn btn-danger ms-auto" type="button" onclick="showModal()">삭제</button>
-        <a th:href="@{/board/modify(bno=${board.bno}, mode=2)}" class="btn btn-primary">수정</a>
+        <th:block th:with="link=${pageRequestDTO.link}">
+          <a th:href="|@{/board/modify(bno=${board.bno}, mode=2)}&${link}|" class="btn btn-primary">수정</a>
+        </th:block>
       </div>
     </div>
   </div>

@@ -66,7 +66,9 @@ public class BoardController {
   }
 
   @GetMapping({"/view", "/modify"})
-  public void getBno(@RequestParam("bno") Long bno, @RequestParam("mode") int mode, Model model){
+  public void getBno(@RequestParam("bno") Long bno, @RequestParam("mode") int mode, PageRequestDTO pageRequestDTO, Model model){
+    log.info("getboard......");
+    model.addAttribute("pageRequestDTO", pageRequestDTO);
     model.addAttribute("board", boardService.findById(bno, mode));
   }
 

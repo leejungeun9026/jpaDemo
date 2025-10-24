@@ -40,7 +40,7 @@
           </tbody>
         </table>
         <div class="d-flex justify-content-start gap-2">
-          <a th:href="@{/board/list}">
+          <a th:href="|@{/board/list}?${pageRequestDTO.link}|">
             <button class="btn btn-secondary" type="button">목록</button>
           </a>
           <a href="javascript:history.back();" class="ms-auto">

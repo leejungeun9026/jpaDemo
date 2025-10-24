@@ -5,14 +5,14 @@
 <div layout:fragment="content">
   <h2 class="mt-4 mb-3">List page</h2>
   <form action="/board/list" method="get">
-    <input name="page" th:value="${pageRequestDTO.page}" type="hidden">
+    <input name="size" th:value="${pageRequestDTO.size}" type="hidden">
     <div class="card mb-3">
       <div class="card-body">
         <div class="d-flex gap-2">
           <div class="input-group">
             <select class="form-select flex-shrink-1" name="type">
               <option value="">선택</option>
-              <option th:selected="${pageRequestDTO.type=='a'}" value="a">전체</option>
+              <option th:selected="${pageRequestDTO.type=='tc'}" value="tc">제목+내용</option>
               <option th:selected="${pageRequestDTO.type=='t'}" value="t">제목</option>
               <option th:selected="${pageRequestDTO.type=='c'}" value="c">내용</option>
               <option th:selected="${pageRequestDTO.type=='w'}" value="w">작성자</option>
@@ -43,7 +43,7 @@
         </tr>
         <tr th:each="board:${pageResponseDTO.dtoList}" th:unless="${#lists.isEmpty(pageResponseDTO.dtoList)}">
           <td>[[${board.bno}]]</td>
-          <td><a th:href="@{/board/view(bno=${board.bno}, mode=1)}">[[${board.title}]]</a></td>
+          <td><a th:href="|@{/board/view(bno=${board.bno}, mode=1)}&${pageRequestDTO.link}|">[[${board.title}]]</a></td>
           <td>[[${board.author}]]</td>
           <td th:text="${#temporals.format(board.regDate, 'yyyy-MM-dd HH:mm')}"></td>
           <td>[[${board.readcount}]]</td>
@@ -101,11 +101,10 @@
             return
         }
         const num = target.getAttribute("data-num")
-        self.location = `/board/list?page=${num}`
-
-        // const formObj = document.querySelector("form")
-        // formObj.innerHTML += `<input type="hidden" name=page value="${num}">`
-        // formObj.submit();
+        // self.location = `/board/list?page=${num}`
+        const formObj = document.querySelector("form")
+        formObj.innerHTML += `<input type="hidden" name=page value="${num}">`
+        formObj.submit();
     }, false)
 
     const modal = new bootstrap.Modal(document.querySelector(".modal"))
